@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>🌸To My Kristine 🌸</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="elements/css/val.css">
+</head>
+<body>
+
+<div class="card">
+  <h1>Kristine, will you be my Valentine? ❤️</h1>
+
+  <div class="buttons">
+    <button id="yesBtn">Yes</button>
+    <button id="noBtn">No</button>
+  </div>
+</div>
+
+<script>
+  const noBtn = document.getElementById("noBtn");
+  const yesBtn = document.getElementById("yesBtn");
+
+  let noCount = parseInt(localStorage.getItem("noCount")) || 0;
+
+ 
+  const gifs = [
+    "elements/sad pokemon GIF.gif",//pikachu
+    "elements/headbang cat.gif",//headbang cat
+    "elements/banana cat.gif", //banana cat
+    "elements/cat cry.gif",//soper sad cat 
+    "elements/boo cry.gif" //boo cry
+  ];
+
+  noBtn.style.position = "fixed";
+noBtn.style.transform = "none";
+
+  function moveButton() {
+    const maxX = window.innerWidth - noBtn.offsetWidth;
+    const maxY = window.innerHeight - noBtn.offsetHeight;
+
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
+
+    noBtn.style.position = "fixed"; 
+    noBtn.style.left = randomX + "px";
+    noBtn.style.top = randomY + "px";
+  }
+
+  function spawnGif() {
+    const gif = document.createElement("img");
+    gif.src = gifs[Math.floor(Math.random() * gifs.length)];
+    gif.style.position = "fixed";
+    gif.style.width = "12vw";
+gif.style.maxWidth = "120px";
+    gif.style.zIndex = "0"; 
+
+   const gifSize = Math.min(window.innerWidth * 0.12, 120);
+
+const maxX = window.innerWidth - gifSize;
+const maxY = window.innerHeight - gifSize;
+
+
+    gif.style.left = Math.random() * maxX + "px";
+    gif.style.top = Math.random() * maxY + "px";
+
+    document.body.appendChild(gif);
+    
+  }
+
+  noBtn.addEventListener("click", () => {
+    noCount++;
+    localStorage.setItem("noCount", noCount);
+
+    moveButton();
+    spawnGif();
+
+   
+  });
+
+  yesBtn.addEventListener("click", () => {
+    window.location.href = "elements/html/yes.html";
+  });
+</script>
+
+</body>
+</html>
