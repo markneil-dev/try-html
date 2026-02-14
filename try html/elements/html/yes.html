@@ -3,7 +3,7 @@
 <head>
   <title>YAYYYYYYY!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <style>
     body {
       margin: 0;
@@ -11,17 +11,19 @@
       font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #000000, #1a0000);
       position: relative;
-      overflow-x: hidden;
+      overflow: hidden;
       color: white;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    /* Polaroids */
+    /* ================= POLAROIDS ================= */
     .bg-polaroid {
       position: absolute;
-      width: 18vw;          
-      height: 24vw;
-      max-width: 220px;     
-      max-height: 280px;
+      width: 190px;              /* fixed base for stability */
+      aspect-ratio: 3/4;
       background-size: cover;
       background-position: center;
       border: 6px solid white;
@@ -32,66 +34,36 @@
       z-index: 0;
     }
 
-    /* Tablet adjustments for polaroids */
-    @media (min-width: 768px) and (max-width: 1024px) {
+    /* Galaxy Tab S9 FE (approx 1440px–2400px width landscape) */
+    @media (min-width: 1300px) and (max-width: 2400px) {
       .bg-polaroid {
-        width: 14vw;
-        height: 19vw;
-        max-width: 200px;
-        max-height: 260px;
-        opacity: 0.2;
-        filter: blur(1.5px);
+        width: 170px;  /* slightly smaller to prevent collision */
       }
     }
 
-    /* Content card */
+    /* ================= CONTENT CARD ================= */
     .content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      position: relative;
       z-index: 10;
       text-align: center;
-      padding: 50px 30px;
-      max-width: 650px;
-      background: rgba(0, 0, 0, 0.35);
+      width: min(90%, 650px);
+      padding: 45px 30px;
+      background: rgba(225, 9, 9, 0.15);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border-radius: 20px;
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-    }
-
-    /* Tablet adjustments for content card */
-    @media (min-width: 768px) and (max-width: 1024px) {
-      .content {
-        width: 80%;
-        max-width: 600px;
-        padding: 40px 25px;
-      }
+      border: 1px solid rgba(225, 9, 9, 0.15);
     }
 
     h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
-    }
-
-    /* Tablet heading adjustment */
-    @media (min-width: 768px) and (max-width: 1024px) {
-      h1 {
-        font-size: clamp(2rem, 4vw, 2.5rem);
-      }
+      font-size: 2.8rem;
+      margin-bottom: 15px;
     }
 
     p {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       margin: 5px 0;
-    }
-
-    /* Tablet paragraph adjustment */
-    @media (min-width: 768px) and (max-width: 1024px) {
-      p {
-        font-size: 1.1rem;
-      }
     }
 
     #count {
@@ -99,27 +71,30 @@
       color: #ffdd00;
     }
 
-    /* Mobile adjustments */
+    /* Mobile */
     @media (max-width: 600px) {
       .bg-polaroid {
-        display: none; 
+        display: none;
       }
+
+      .content {
+        width: 92%;
+        padding: 30px 20px;
+      }
+
       h1 {
         font-size: 2rem;
       }
+
       p {
         font-size: 1rem;
-      }
-      .content {
-        width: 90%;
-        padding: 30px 20px;
       }
     }
   </style>
 </head>
 <body>
 
-
+<!-- Polaroids -->
 <div class="bg-polaroid" style="top: 3%; left: 6%; transform: rotate(-6deg); background-image: url('../images/css1.jpeg');"></div>
 <div class="bg-polaroid" style="top: 8%; left: 38%; transform: rotate(4deg); background-image: url('../images/css2.jpeg');"></div>
 <div class="bg-polaroid" style="top: 6%; left: 72%; transform: rotate(-3deg); background-image: url('../images/css3.jpeg');"></div>
@@ -134,17 +109,15 @@
 <div class="bg-polaroid" style="top: 70%; left: 80%; transform: rotate(5deg); background-image: url('../images/css12.png');"></div>
 <div class="bg-polaroid" style="top: 70%; left: 5%; transform: rotate(-4deg); background-image: url('../images/css13.png');"></div>
 
-
 <!-- Content card -->
 <div class="content">
-  <h1>YAYYY ❤️</h1>
-  <p>Bakit ka nag "No" ng <span id="count"></span> times??? 😒</p>
-  <p>But you still chose YES bebi 🥰</p>
-  <p>See you on February 14, 7/8pm</p>
-  <p>We will be eating Samgyeup,so dress accordingly</p>
-  <p>I Miss You so much babyyy, I can't wait to see youu naaaa</p>
-  <p>Happy Valentines</p>
-  <p>I love you my Kristine ❤️ </p>
+  <h1>You said Yes!</h1>
+  <p>See you on February 14 at 7:00pm</p>
+  <p>We will be having dinner at Samgyupsal, so please dress accordingly.</p>
+  <p>I miss you very much, my love, and I can’t wait to see you.</p>
+  <p>Happy Valentine’s Day.</p>
+  <p>I love you, my Kristine ❤️</p>
+  <p>But why did you say "No" <span id="count"></span> times? 😒</p>
 </div>
 
 <script>
